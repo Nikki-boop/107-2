@@ -36,7 +36,7 @@ def delete_product(index):
         deleted_product = products.pop(index)
         return json.dumps (deleted_product)
     else:
-        return "That index does not exist"
+        # return "That index does not exist"
 
     return "Deleting"
 
