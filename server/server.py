@@ -1,5 +1,6 @@
 from flask import Flask, request
 import json
+from config import db
 
 app = Flask(__name__)
 
@@ -24,8 +25,8 @@ def get_products():
 def save_product():
     product = request.get_json()
     print(f"New product: {product}")
-
-    products.append(product)
+    db.products.insert_one(product)
+    # products.append(product)
     return json.dumps(product)
 
 @app.delete("/api/products/<int:index>")
@@ -37,8 +38,7 @@ def delete_product(index):
         return json.dumps (deleted_product)
     else:
         # return "That index does not exist"
-
-    return "Deleting"
+        return "That index does not exist"
 
 
 app.run(debug=True)
